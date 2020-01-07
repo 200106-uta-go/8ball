@@ -1,5 +1,4 @@
 # 8ball
-
 8ball is a CLI application which will respond with a random answer to your questions.
 
 ## User Stories
