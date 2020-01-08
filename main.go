@@ -1,11 +1,13 @@
 package main
 
 import (
+	"flag"
 	"math/rand"
 	"time"
 )
 
 var answers [8]string
+var abs bool
 
 func init() {
 	answers = [8]string{
@@ -20,10 +22,19 @@ func init() {
 	}
 
 	rand.Seed(time.Now().UnixNano())
+
+	flag.BoolVar(&abs, "abs", false, "absolute answers only")
+	flag.Parse()
 }
 
 func random() int {
-	return rand.Intn(len(answers))
+	var n int
+	if abs {
+		n = 2
+	} else {
+		n = len(answers)
+	}
+	return rand.Intn(n)
 }
 
 func main() {
