@@ -3,6 +3,6 @@
 
 ## User Stories
 - [x] User can run 8ball and receive guidance
-- [ ] User can ask 8ball for absolute answers
+- [x] User can ask 8ball for absolute answers
 - [ ] User can switch answer sets
 - [ ] User can ask question and hear it back with answer
