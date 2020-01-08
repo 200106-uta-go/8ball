@@ -10,11 +10,17 @@ func main() {
 	t = int64(time.Now().Second())
 	rand.Seed(t)
 	n := rand.Intn(3)
-	if n == 0 {
-		println("No")
-	} else if n == 1 {
-		println("Yes")
-	} else if n == 2 {
-		println("Maybe")
+
+	answers := [8]string{
+		"No",
+		"Yes",
+		"Maybe",
+		"Try Again",
+		"Pray",
+		"I don't know",
+		"It's unclear",
+		"Can you repeat the question?",
 	}
+
+	println(answers[n])
 }
