@@ -6,11 +6,6 @@ import (
 )
 
 func main() {
-	var t int64
-	t = int64(time.Now().Second())
-	rand.Seed(t)
-	n := rand.Intn(3)
-
 	answers := [8]string{
 		"No",
 		"Yes",
@@ -21,6 +16,11 @@ func main() {
 		"It's unclear",
 		"Can you repeat the question?",
 	}
+
+	var t int64
+	t = time.Now().UnixNano()
+	rand.Seed(t)
+	n := rand.Intn(len(answers))
 
 	println(answers[n])
 }
