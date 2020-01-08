@@ -5,8 +5,10 @@ import (
 	"time"
 )
 
-func main() {
-	answers := [8]string{
+var answers [8]string
+
+func init() {
+	answers = [8]string{
 		"No",
 		"Yes",
 		"Maybe",
@@ -17,10 +19,13 @@ func main() {
 		"Can you repeat the question?",
 	}
 
-	var t int64
-	t = time.Now().UnixNano()
-	rand.Seed(t)
-	n := rand.Intn(len(answers))
+	rand.Seed(time.Now().UnixNano())
+}
 
-	println(answers[n])
+func random() int {
+	return rand.Intn(len(answers))
+}
+
+func main() {
+	println(answers[random()])
 }
