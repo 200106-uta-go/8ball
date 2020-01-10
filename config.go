@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"flag"
 	"log"
 	"math/rand"
@@ -12,8 +13,18 @@ import (
 var answers []string
 var abs bool
 
+const CONFIGFILE string = "conf.json"
+
+type Configuration struct {
+	File string `json:"stdanswers"`
+}
+
 func init() {
-	f, err := os.Open("config.txt")
+	config := Configuration{}
+	c, _ := os.Open(CONFIGFILE)
+	json.NewDecoder(c).Decode(&config)
+
+	f, err := os.Open(config.File)
 	if err != nil {
 		log.Fatal(err)
 	}
