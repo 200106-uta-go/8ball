@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"bufio"
@@ -10,19 +10,23 @@ import (
 	"time"
 )
 
-var answers []string
-var abs bool
+var Answers []string
+var Abs bool
+var Http bool
+var Port int
 
 const CONFIGFILE string = "conf.json"
 
 type Configuration struct {
 	File string `json:"stdanswers"`
+	Port int    `json:"port"`
 }
 
 func init() {
 	config := Configuration{}
 	c, _ := os.Open(CONFIGFILE)
 	json.NewDecoder(c).Decode(&config)
+	Port = config.Port
 
 	f, err := os.Open(config.File)
 	if err != nil {
@@ -31,11 +35,12 @@ func init() {
 	reader := bufio.NewScanner(f)
 
 	for reader.Scan() {
-		answers = append(answers, reader.Text())
+		Answers = append(Answers, reader.Text())
 	}
 
 	rand.Seed(time.Now().UnixNano())
 
-	flag.BoolVar(&abs, "abs", false, "absolute answers only")
+	flag.BoolVar(&Abs, "abs", false, "absolute answers only")
+	flag.BoolVar(&Http, "http", false, "start http server")
 	flag.Parse()
 }

@@ -1,3 +1,4 @@
 {
-    "stdanswers": "altanswers.txt"
+    "stdanswers": "/home/ubuntu/go/src/github.com/200106-uta-go/8ball/altanswers.txt",
+    "port": 8080
 }
