@@ -13,7 +13,11 @@ func main() {
 
 	http.Handle("/", http.FileServer(http.Dir("web")))
 	http.HandleFunc("/8ball", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, config.Answers[shaker.Random(config.Abs, config.Answers)])
+		var name = r.FormValue("name")
+		if name == "" {
+			name = "Anonymous"
+		}
+		fmt.Fprint(w, config.Answers[shaker.Random(config.Abs, config.Answers)], " ", name)
 	})
 	http.ListenAndServe(":8080", nil)
 }
